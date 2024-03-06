@@ -87,7 +87,7 @@ def transfer_matrix_F(k: np.ndarray, l: np.ndarray, p: float) -> np.ndarray:
     p21 = (1 - p) * np.exp(-1j * k * l)
     p22 = (1 + p) * np.exp(-1j * k * l)
     f = 0.5 * np.array([[p11, p12],
-                  [p21, p22]], dtype=complex)
+                        [p21, p22]], dtype=complex)
     return f
 
 
