@@ -16,7 +16,7 @@ def main(lowest_energy, length, position, potential, effective_mass):
     PSI = np.empty_like(zz, dtype=complex)
 
     segment_indices = np.searchsorted(position, zz)
-
+    segment_indices = np.clip(segment_indices, a_min=0, a_max=len(position) - 1)
     for i in range(len(zz)):
         segment_index = segment_indices[i]
         Vz[i] = potential[segment_index]
