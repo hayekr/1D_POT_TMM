@@ -14,7 +14,7 @@ m_e_InGaAs = 0.041 * m0  # electron effective mass in InGaAs
 m_e_InP = 0.077 * m0  # electron effective mass in InP
 # E_min = Eg_InP - (0.4 * (Eg_InP - Eg_InGaAs))
 dE = 1e-3
-
+conduction_discontinuity = 0.4 * (Eg_InP - Eg_InGaAs)  # 40% energy conduction band discontinuity
 
 def main():
     print(
@@ -33,6 +33,17 @@ def main():
             [L[0], np.sum(L[0:2]), np.sum(L[0:3]), np.sum(L[0:4]), np.sum(L)])  # position of each new structure
         m_star = np.array([m_e_InP, m_e_InGaAs, m_e_InP, m_e_InGaAs, m_e_InP])  # effective mass of each
         V = np.array([Eg_InP, Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs), Eg_InP, Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs), Eg_InP])
+
+    elif int(choice) == 3:
+        L = np.array([10, 1, 5, 2, 10, 0]) * 1e-9
+        z = np.array([L[0], np.sum(L[0:2]), np.sum(L[0:3]), np.sum(L[0:4]), np.sum([L[0:5]]), np.sum(L)])
+        V = np.array([Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs),
+                      Eg_InP,
+                      Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs),
+                      Eg_InP,
+                      Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs),
+                      Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs)])
+        m_star = np.array([m_e_InGaAs, m_e_InP, m_e_InGaAs, m_e_InP, m_e_InGaAs, m_e_InGaAs])
     else:
         print('Invalid choice')
         exit(1)
