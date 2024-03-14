@@ -27,10 +27,6 @@ def main(lowest_energy, length, position, potential, effective_mass):
             segment_index] * np.exp(
             -1j * k[segment_index] * (zz[i] - position[segment_index]))
 
-    # Normalize PSI
-    # PSI = np.abs(PSI) ** 2 / np.max(np.abs(PSI) ** 2) * 0.15 + E0
-    # PSI = PSI / util.normalize(PSI, zz)
-
     # Plot
     plt.figure(1)
     plt.plot(zz * 1e9, Vz, 'black', label='Potential - V(z)')  # Plotting potential
