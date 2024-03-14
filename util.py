@@ -64,7 +64,7 @@ def p_value(k_n: float, k_n_plus_1: float, m_star_n: float, m_star_n_plus_1: flo
     return p
 
 
-def transfer_matrix_F(k: np.ndarray, l: np.ndarray, p: float) -> np.ndarray:
+def transfer_matrix_F(k, length, p: float) -> np.ndarray:
     """
     Calculate the transfer matrix for a given region.
 
@@ -72,7 +72,7 @@ def transfer_matrix_F(k: np.ndarray, l: np.ndarray, p: float) -> np.ndarray:
     ----------
     k : float
         The wave vector in the region.
-    l : float
+    length : float
         The length of the region.
     p : float
         The p value for the region.
@@ -82,10 +82,10 @@ def transfer_matrix_F(k: np.ndarray, l: np.ndarray, p: float) -> np.ndarray:
     f : np.ndarray
         The transfer matrix for the given region.
     """
-    p11 = (1 + p) * np.exp(1j * k * l)
-    p12 = (1 - p) * np.exp(1j * k * l)
-    p21 = (1 - p) * np.exp(-1j * k * l)
-    p22 = (1 + p) * np.exp(-1j * k * l)
+    p11 = (1 + p) * np.exp(1j * k * length)
+    p12 = (1 - p) * np.exp(1j * k * length)
+    p21 = (1 - p) * np.exp(-1j * k * length)
+    p22 = (1 + p) * np.exp(-1j * k * length)
     f = 0.5 * np.array([[p11, p12],
                         [p21, p22]], dtype=complex)
     return f
@@ -128,3 +128,23 @@ def isolate_f22_TM(E, m, V, L):
         P = p_value(k[j].item(), k[j + 1].item(), m[j], m[j + 1])
         F = transfer_matrix_F(k[j + 1], L[j + 1], P) @ F
     return np.real(F[1, 1])
+
+def transfer_matrix_b(k, length, p: float) -> np.ndarray:
+    """
+    Calculate the transfer matrix for a given region.
+
+    Parameters
+    ----------
+    k : float
+        The wave vector in the region.
+    length : float
+        The length of the region.
+    p : float
+        The p value for the region.
+
+    Returns
+    -------
+    f : np.ndarray
+        The transfer matrix for the given region.
+    """
+    return np.linalg.inv(transfer_matrix_F(k, length, p))
