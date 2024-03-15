@@ -53,6 +53,9 @@ tunneling_probabilities = np.array([tunneling_probability(energy_range[i], m, V,
 
 acc_tunneling = np.array(np.array([accurate_tunneling_probability(energy_range[i], m, V, L) for i in range(len(energy_range))]))
 
-plt.plot(tunneling_probabilities, energy_range)
-plt.plot(acc_tunneling, energy_range, 'r')
+plt.plot(tunneling_probabilities, energy_range, 'b', label='Effective Mass')
+plt.plot(acc_tunneling, energy_range, 'r', label='Energy Dependent mass')
+plt.xlabel('Tunneling Probability')
+plt.ylabel('Energy (eV)')
+plt.grid()
 plt.show()
