@@ -17,6 +17,7 @@ def tunneling_probability(energy, mass, potential, length):
     b11 = abs(B[0, 0])
     return np.divide(1, b11)
 
+
 def accurate_tunneling_probability(energy, mass, potential, length):
     mass[:] = [m0 * (energy + 0.984)/24 if x == m_e_InGaAs else m0 * (energy + 1.694)/22 for x in mass]
     wave_vector = util.wave_vector(energy, potential, mass)
