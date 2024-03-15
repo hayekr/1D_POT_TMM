@@ -148,3 +148,13 @@ def transfer_matrix_b(k, length, p: float) -> np.ndarray:
         The transfer matrix for the given region.
     """
     return np.linalg.inv(transfer_matrix_F(k, length, p))
+
+
+def transmission(energy, mass, potential, length):
+    k = wave_vector(energy, potential, mass)
+    B = np.eye(2)
+    for i in range(len(k) - 1):
+        p = p_value(k[i], k[i + 1], mass[i], mass[i + 1])
+        B = B @ transfer_matrix_b(p, k[i + 1], length[i + 1])
+    b11 = abs(B[0, 0])
+    return np.divide(1, b11)
