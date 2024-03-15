@@ -44,11 +44,11 @@ C_band_disc = 0.4 * (E_g_InP - E_g_InGaAs)  # Conduct band discontinuity (J)
 E_G_InP_new = E_g_InGaAs + C_band_disc  # New band gap (J)
 
 L = np.array([10, 1, 5, 2, 10]) * 1e-9  # barrier thickness (m)
-z = np.array([L[0], np.sum(L[0:2]), np.sum(L[0:3]), np.sum(L[0:4]), np.sum(L)])
 m = np.array([m_e_InGaAs, m_e_InP, m_e_InGaAs, m_e_InP, m_e_InGaAs])
 V = np.array([E_g_InGaAs, E_G_InP_new, E_g_InGaAs, E_G_InP_new, E_g_InGaAs])
 
 energy_range = np.linspace(0, 2, 10000)
+
 tunneling_probabilities = np.array([tunneling_probability(energy_range[i], m, V, L) for i in range(len(energy_range))])
 
 acc_tunneling = np.array(np.array([accurate_tunneling_probability(energy_range[i], m, V, L) for i in range(len(energy_range))]))
