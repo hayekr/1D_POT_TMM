@@ -129,7 +129,8 @@ def isolate_f22_TM(E, m, V, L):
         F = transfer_matrix_F(k[j + 1], L[j + 1], P) @ F
     return np.real(F[1, 1])
 
-def transfer_matrix_b(k, length, p: float) -> np.ndarray:
+
+def transfer_matrix_b(k, length, p: float):
     """
     Calculate the transfer matrix for a given region.
 
@@ -144,7 +145,7 @@ def transfer_matrix_b(k, length, p: float) -> np.ndarray:
 
     Returns
     -------
-    f : np.ndarray
+    b : np.ndarray
         The transfer matrix for the given region.
     """
     return np.linalg.inv(transfer_matrix_F(k, length, p))

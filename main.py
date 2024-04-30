@@ -16,6 +16,7 @@ m_e_InP = 0.077 * m0  # electron effective mass in InP
 dE = 1e-3
 conduction_discontinuity = 0.4 * (Eg_InP - Eg_InGaAs)  # 40% energy conduction band discontinuity
 
+
 def main():
     print(
         'This tool will generate the lowest energy solution for a given potential profile. Two examples are included.')
