@@ -24,20 +24,23 @@ def main():
 
     if int(choice) == 1:
         L = np.array([20, 5, 20, 0]) * 1e-9
-        z = np.array([L[0], np.sum(L[0:2]), np.sum(L[0:3]), np.sum(L)])
+        #z = np.array([L[0], np.sum(L[0:2]), np.sum(L[0:3]), np.sum(L)])
+        z = np.cumsum(L)
         V = np.array([Eg_InP, Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs), Eg_InP, Eg_InP])
         m_star = np.array([m_e_InP, m_e_InGaAs, m_e_InP, m_e_InP], dtype=float)
 
     elif int(choice) == 2:
         L = np.array([20, 5, 1, 4, 0]) * 1e-9  # size of individual structures
-        z = np.array(
-            [L[0], np.sum(L[0:2]), np.sum(L[0:3]), np.sum(L[0:4]), np.sum(L)])  # position of each new structure
+        #z = np.array(
+           # [L[0], np.sum(L[0:2]), np.sum(L[0:3]), np.sum(L[0:4]), np.sum(L)])  # position of each new structure
+        np.cumsum(L)
         m_star = np.array([m_e_InP, m_e_InGaAs, m_e_InP, m_e_InGaAs, m_e_InP])  # effective mass of each
         V = np.array([Eg_InP, Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs), Eg_InP, Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs), Eg_InP])
 
     elif int(choice) == 3:
         L = np.array([10, 1, 5, 2, 10, 0]) * 1e-9
-        z = np.array([L[0], np.sum(L[0:2]), np.sum(L[0:3]), np.sum(L[0:4]), np.sum([L[0:5]]), np.sum(L)])
+        #z = np.array([L[0], np.sum(L[0:2]), np.sum(L[0:3]), np.sum(L[0:4]), np.sum([L[0:5]]), np.sum(L)])
+        z = np.cumsum(L)
         V = np.array([Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs),
                       Eg_InP,
                       Eg_InP - 0.4 * (Eg_InP - Eg_InGaAs),
